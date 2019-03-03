@@ -3,11 +3,20 @@ package activitytest.example.com.crashbook;
 import org.litepal.crud.DataSupport;
 
 public class Item extends DataSupport {
+    private int id;
     private int year;
     private int month;
     private int day;
     private float money;
     private int category;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getYear() {
         return year;

@@ -1,5 +1,6 @@
 package activitytest.example.com.crashbook;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.Calendar;
 
 public class ItemEditor extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class ItemEditor extends AppCompatActivity {
     private static ImageView imageView;
     private static EditText editText;
 
+    private int id;
     private int mode;//0-新建条目 1-编辑条目
     private int year;
     private int month;
@@ -52,6 +56,7 @@ public class ItemEditor extends AppCompatActivity {
                 day = cal.get(Calendar.DATE);
                 break;
             case 1:
+                id = intent.getIntExtra("id",0);
                 year = intent.getIntExtra("year",0);
                 month = intent.getIntExtra("month",0);
                 day = intent.getIntExtra("day",0);
@@ -90,8 +95,7 @@ public class ItemEditor extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.item_money);
-        String text = money+"";
-        editText.setText(text);
+        editText.setText((money+""));
 
         //保存按钮
         Button savebutton = (Button) findViewById(R.id.save_button);
@@ -99,31 +103,28 @@ public class ItemEditor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 money = Float.parseFloat(editText.getText().toString());
-                //总统计
-                SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
-                float paycount = pref.getFloat("paycount",0);
-                float savecount = pref.getFloat("savecount",0);
-                SharedPreferences.Editor editor = getSharedPreferences("data",
-                        MODE_PRIVATE).edit();
-                switch (category){
-                    case 0: editor.putFloat("savecount",savecount+money);
-                        break;
-                    default: editor.putFloat("paycount",paycount+money);
-                }
-                editor.apply();
                 //数据库保存
                 switch (mode){
                     case 0:
+                        Item item = new Item();
+                        item.setYear(year);
+                        item.setMonth(month);
+                        item.setDay(day);
+                        item.setMoney(money);
+                        item.setCategory(category);
+                        item.save();
+                        break;
                     case 1:
+                        ContentValues contentValues = new ContentValues();
+                        contentValues.put("year",year);
+                        contentValues.put("month",month);
+                        contentValues.put("day",day);
+                        contentValues.put("money",money);
+                        contentValues.put("category",category);
+                        DataSupport.update(Item.class,contentValues,id);
+                        break;
                     default:
                 }
-                Item item = new Item();
-                item.setYear(year);
-                item.setMonth(month);
-                item.setDay(day);
-                item.setMoney(money);
-                item.setCategory(category);
-                item.save();
                 //提示信息
                 switch (mode){
                     case 0:
@@ -186,7 +187,7 @@ public class ItemEditor extends AppCompatActivity {
         switch (mode){
             case 0: menuItem.setVisible(false);
                 break;
-            case 1: menuItem.setVisible(false);
+            case 1:
                 break;
             default:
         }
@@ -205,7 +206,7 @@ public class ItemEditor extends AppCompatActivity {
     }
 
     public static void actionstart(int mode,Context context, int year, int month,
-                                    int day ,float money, int category){
+                                    int day ,float money, int category,int id){
         Intent intent = new Intent(context, ItemEditor.class);
         intent.putExtra("mode",mode);
         intent.putExtra("year",year);
@@ -213,6 +214,7 @@ public class ItemEditor extends AppCompatActivity {
         intent.putExtra("day",day);
         intent.putExtra("money",money);
         intent.putExtra("category",category);
+        if (mode == 1) intent.putExtra("id",id);
         context.startActivity(intent);
     }
 }

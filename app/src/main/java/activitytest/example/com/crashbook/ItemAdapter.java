@@ -53,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 int position = holder.getAdapterPosition();
                 Item item = mitemList.get(position);
                 ItemEditor.actionstart(1,mContext,item.getYear(),item.getMonth(),
-                        item.getDay(),item.getMoney(),item.getCategory());
+                        item.getDay(),item.getMoney(),item.getCategory(),item.getId());
             }
         });
         return holder;
@@ -62,9 +62,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = mitemList.get(position);
-        String string;
-        string = (item.getMonth()+1)+"-"+item.getDay();
-        holder.itemDate.setText(string);
+        holder.itemDate.setText(((item.getMonth()+1)+"-"+item.getDay()));
         switch (item.getCategory()){
             case 0: holder.itemName.setText("收入");
                 break;
@@ -78,13 +76,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         }
         switch (item.getCategory()){
             case 0:
-                string="+"+item.getMoney();
-                holder.itemMoney.setText(string);
+                holder.itemMoney.setText(("+"+item.getMoney()));
                 holder.itemMoney.setTextColor(Color.parseColor("#0080FF"));
                 break;
             default:
-                string="-"+item.getMoney();
-                holder.itemMoney.setText(string);
+                holder.itemMoney.setText(("-"+item.getMoney()));
                 holder.itemMoney.setTextColor(Color.parseColor("#FF0000"));
         }
     }
