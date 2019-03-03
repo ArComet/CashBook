@@ -2,40 +2,50 @@ package activitytest.example.com.crashbook;
 
 import org.litepal.crud.DataSupport;
 
-import java.util.Calendar;
-
 public class Item extends DataSupport {
-    private Calendar calendar;
-    private int money;
+    private int year;
+    private int month;
+    private int day;
+    private float money;
     private int category;
 
-    public Item(Calendar calendar, int money,int category){
-        this.money = money;
-        this.calendar = calendar;
-        this.category = category;
+    public int getYear() {
+        return year;
     }
 
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public void setMoney(int money) {
-        this.money = money;
+    public int getMonth() {
+        return month;
     }
 
-    public void setCategory(int category) {
-        this.category = category;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public int getMoney() {
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public float getMoney() {
         return money;
     }
 
-    public Calendar getCalendar() {
-        return calendar;
+    public void setMoney(float money) {
+        this.money = money;
     }
 
     public int getCategory() {
         return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 }

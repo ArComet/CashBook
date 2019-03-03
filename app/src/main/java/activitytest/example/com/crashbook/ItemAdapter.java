@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
@@ -53,7 +52,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Item item = mitemList.get(position);
-                ItemEditor.actionstart(1,mContext,item.getCalendar(),item.getMoney(),item.getCategory());
+                ItemEditor.actionstart(1,mContext,item.getYear(),item.getMonth(),
+                        item.getDay(),item.getMoney(),item.getCategory());
             }
         });
         return holder;
@@ -62,11 +62,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Item item = mitemList.get(position);
-        Calendar cal = item.getCalendar();
         String string;
-        string=(cal.get(Calendar.MONTH)+1)+"-"+cal.get(Calendar.DATE);
+        string = (item.getMonth()+1)+"-"+item.getDay();
         holder.itemDate.setText(string);
-        holder.itemMoney.setText(item.getMoney());
         switch (item.getCategory()){
             case 0: holder.itemName.setText("收入");
                 break;
@@ -84,12 +82,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 holder.itemMoney.setText(string);
                 holder.itemMoney.setTextColor(Color.parseColor("#0080FF"));
                 break;
-            case 1:
+            default:
                 string="-"+item.getMoney();
                 holder.itemMoney.setText(string);
                 holder.itemMoney.setTextColor(Color.parseColor("#FF0000"));
-                break;
-            default:
         }
     }
 

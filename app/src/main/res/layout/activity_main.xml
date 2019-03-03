@@ -38,19 +38,19 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:text="收入 "
                 android:gravity="center"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
             <TextView
                 android:id="@+id/savecount"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:textColor="#0080FF"
                 android:gravity="center"
-                android:textSize="30sp"/>
+                android:textSize="30sp"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"/>
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +62,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:text="支出 "
                 android:gravity="center"
                 android:textSize="30sp"/>
@@ -71,13 +70,13 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:text="0"
                 android:textColor="#FF0000"
                 android:gravity="center"
-                android:textSize="30sp"/>
+                android:textSize="30sp"
+                android:maxLines="1"
+                app:autoSizeTextType="uniform"/>
         </LinearLayout>
-
     </LinearLayout>
 
 

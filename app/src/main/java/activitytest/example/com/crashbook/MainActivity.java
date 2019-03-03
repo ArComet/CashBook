@@ -42,12 +42,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
                 ItemEditor.actionstart(0,MainActivity.this,
-                        cal,0,0);
+                        0,0,0,0,0);
             }
         });
 
-        //数据库
-        LitePal.getDatabase();
+        //创建数据库
         itemList = DataSupport.findAll(Item.class);
 
         //滚动列表
@@ -61,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         paytext = (TextView) findViewById(R.id.paycount);
         savetext = (TextView) findViewById(R.id.savecount);
         SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
-        String paycount = pref.getInt("paycount",0)+"";
-        String savecount = pref.getInt("savecount",0)+"";
+        String paycount = pref.getFloat("paycount",0)+"";
+        String savecount = pref.getFloat("savecount",0)+"";
         paytext.setText(paycount);
         savetext.setText(savecount);
     }
@@ -72,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //刷新统计
         SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
-        String paycount = pref.getInt("paycount",0)+"";
-        String savecount = pref.getInt("savecount",0)+"";
+        String paycount = pref.getFloat("paycount",0)+"";
+        String savecount = pref.getFloat("savecount",0)+"";
         paytext.setText(paycount);
         savetext.setText(savecount);
 
