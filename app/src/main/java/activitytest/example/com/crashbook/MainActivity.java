@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.litepal.LitePal;
+import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         //数据库
         LitePal.getDatabase();
-        //itemList = DataSupport.findAll(Item.class);
+        itemList = DataSupport.findAll(Item.class);
 
         //滚动列表
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         savetext.setText(savecount);
 
         //刷新数据库
-        //itemList = DataSupport.findAll(Item.class);
+        itemList = DataSupport.findAll(Item.class);
 
         //刷新滚动列表
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
