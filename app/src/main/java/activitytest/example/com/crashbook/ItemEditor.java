@@ -85,6 +85,7 @@ public class ItemEditor extends AppCompatActivity {
         savebutton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                money = Integer.parseInt(editText.getText().toString());
                 //总统计
                 SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
                 int paycount = pref.getInt("paycount",0);
@@ -92,11 +93,9 @@ public class ItemEditor extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("data",
                         MODE_PRIVATE).edit();
                 switch (category){
-                    case 0: editor.putInt("paycount",paycount+money);
+                    case 0: editor.putInt("savecount",savecount+money);
                         break;
-                    case 1: editor.putInt("savecount",savecount+money);
-                        break;
-                    default:
+                    default:editor.putInt("paycount",paycount+money);
                 }
                 editor.apply();
                 //数据库保存
