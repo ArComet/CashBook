@@ -77,7 +77,6 @@ public class ItemEditor extends AppCompatActivity {
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
                 Toast.makeText(ItemEditor.this, year+"年"+(monthOfYear+1)+"月"+dayOfMonth+"日", Toast.LENGTH_SHORT).show();
             }
         });
@@ -183,7 +182,7 @@ public class ItemEditor extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar_editor, menu);
-        MenuItem menuItem = menu.findItem(R.id.delete);
+        MenuItem menuItem = menu.findItem(R.id.crash_delete);
         switch (mode){
             case 0: menuItem.setVisible(false);
                 break;
@@ -197,6 +196,10 @@ public class ItemEditor extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.crash_delete:
+                DataSupport.delete(Item.class,id);
+                finish();
+                return true;
             case android.R.id.home:
                 finish();
                 return true;

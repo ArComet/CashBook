@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.cash_count:
+            case R.id.crash_count:
                 break;
-            case R.id.cash_find:
+            case R.id.crash_find:
                 break;
             default:
         }

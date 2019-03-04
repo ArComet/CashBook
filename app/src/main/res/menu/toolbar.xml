@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/cash_count"
+        android:id="@+id/crash_count"
         android:title="账单统计"
         android:icon="@drawable/ic_menu"
         app:showAsAction="always" />
     <item
-        android:id="@+id/cash_find"
+        android:id="@+id/crash_find"
         android:title="账单找回"
         app:showAsAction="never" />
 </menu>
