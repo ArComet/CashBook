@@ -24,10 +24,10 @@ import org.litepal.crud.DataSupport;
 import java.util.Calendar;
 
 public class ItemEditor extends AppCompatActivity {
-    private static Toolbar toolbar;
-    private static DatePicker datePicker;
-    private static ImageView imageView;
-    private static EditText editText;
+    private DatePicker datePicker;
+    private ImageView imageView;
+    private EditText editText;
+    private Toolbar toolbar;
 
     private int id;
     private int mode;//0-新建条目 1-编辑条目
@@ -208,8 +208,8 @@ public class ItemEditor extends AppCompatActivity {
         return true;
     }
 
-    public static void actionstart(int mode,Context context, int year, int month,
-                                    int day ,float money, int category,int id){
+    public static void editorstart(int mode, Context context, int year, int month,
+                                   int day , float money, int category, int id){
         Intent intent = new Intent(context, ItemEditor.class);
         intent.putExtra("mode",mode);
         intent.putExtra("year",year);

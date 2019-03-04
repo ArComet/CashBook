@@ -19,73 +19,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/book_and_pen" />
 
-    <View
-        android:layout_height="2dp"
-        android:layout_margin="3dp"
-        android:background="@color/colorPrimary"
-        android:layout_width="fill_parent"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="收入 "
-                android:gravity="center"
-                android:textSize="30sp" />
-            <TextView
-                android:id="@+id/savecount"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:textColor="#0080FF"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:maxLines="1"
-                app:autoSizeTextType="uniform"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="支出 "
-                android:gravity="center"
-                android:textSize="30sp"/>
-            <TextView
-                android:id="@+id/paycount"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="#FF0000"
-                android:gravity="center"
-                android:textSize="30sp"
-                android:maxLines="1"
-                app:autoSizeTextType="uniform"/>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <View
-        android:layout_height="2dp"
-        android:layout_margin="3dp"
-        android:background="@color/colorPrimary"
-        android:layout_width="fill_parent"/>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -94,8 +27,24 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/hinttext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="创建第一条收支记录~"/>
+            </LinearLayout>
+        </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

@@ -10,8 +10,11 @@
         android:roundIcon="@drawable/ic_crashbook"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ItemEditor"></activity>
+        <activity
+            android:name=".ItemCounter"
+            android:label="统计">
+        </activity>
+        <activity android:name=".ItemEditor" />
         <activity
             android:name=".MainActivity"
             android:label="记账本">

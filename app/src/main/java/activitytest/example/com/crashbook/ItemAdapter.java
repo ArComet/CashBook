@@ -52,7 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Item item = mitemList.get(position);
-                ItemEditor.actionstart(1,mContext,item.getYear(),item.getMonth(),
+                ItemEditor.editorstart(1,mContext,item.getYear(),item.getMonth(),
                         item.getDay(),item.getMoney(),item.getCategory(),item.getId());
             }
         });
