@@ -2,10 +2,12 @@ package activitytest.example.com.crashbook;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -76,8 +78,11 @@ public class ItemEditor extends AppCompatActivity {
         datePicker = (DatePicker) findViewById(R.id.date_picker);
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Toast.makeText(ItemEditor.this, year+"年"+(monthOfYear+1)+"月"+dayOfMonth+"日", Toast.LENGTH_SHORT).show();
+            public void onDateChanged(DatePicker view, int Year, int Month, int Day) {
+                year = Year;
+                month = Month;
+                day = Day;
+                Toast.makeText(ItemEditor.this, Year+"年"+(Month+1)+"月"+Day+"日", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -197,9 +202,24 @@ public class ItemEditor extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.crash_delete:
-                DataSupport.delete(Item.class,id);
-                finish();
-                return true;
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ItemEditor.this);
+                dialog.setTitle("提示");
+                dialog.setMessage("确定删除这条记录吗?");
+                dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DataSupport.delete(Item.class,id);
+                        finish();
+                    }
+                });
+                dialog.show();
+                break;
             case android.R.id.home:
                 finish();
                 return true;
