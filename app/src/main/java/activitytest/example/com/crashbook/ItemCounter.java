@@ -35,14 +35,14 @@ public class ItemCounter extends AppCompatActivity {
         }
 
         Calendar cal = Calendar.getInstance();
-        day_count(cal.get(Calendar.DATE));
-        month_count(cal.get(Calendar.MONTH));
+        day_count(cal.get(Calendar.DATE),cal.get(Calendar.MONTH),cal.get(Calendar.YEAR));
+        month_count(cal.get(Calendar.MONTH),cal.get(Calendar.YEAR));
         year_count(cal.get(Calendar.YEAR));
     }
 
-    void day_count(int day){
-        itemList = DataSupport.where("day == ?", day+"")
-                .find(Item.class);
+    void day_count(int day, int month, int year){
+        itemList = DataSupport.where("day == ? and month == ? and year == ?",
+                day+"",month+"",year+"").find(Item.class);
         float paycount = 0;
         float savecount = 0;
         for (Item i:itemList){
@@ -58,8 +58,8 @@ public class ItemCounter extends AppCompatActivity {
         daysave.setText((savecount+""));
     }
 
-    void month_count(int month){
-        itemList = DataSupport.where("month == ?", month+"")
+    void month_count(int month, int year){
+        itemList = DataSupport.where(" month ==? and year == ?", month+"",year+"")
                 .find(Item.class);
         float paycount = 0;
         float savecount = 0;
